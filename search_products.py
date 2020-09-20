@@ -7,7 +7,6 @@ print("____________________________")
 
 data = r.json()
 
-
 print(len(data))
 print(data[165])
 print(data[165]['id'])
@@ -25,6 +24,16 @@ for i in range(0,166):
     print("$ " + data[i]["price"])
     print(data[i]["product_link"])
     #print(data[i]['description'])
+
+shopping_cart=[]
+add_to_cart = input("Would you like to add this to your cart? ")
+if add_to_cart == "yes":
+  shopping_cart.append(data[i]["name"])
+  with open('shopping_Cart.json', 'w') as output_file:
+    new =json.dumps(shopping_cart,default=lambda o: o.__dict__, sort_keys=True, indent= 4)
+    json.dump(new,output_file)
+
+
 
 
 
