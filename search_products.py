@@ -1,11 +1,15 @@
 import requests
 import json
-r = requests.get('https://makeup-api.herokuapp.com/api/v1/products.json?product_type=foundation')
-print("____________________________")
-# print (r.json())
-# print(r['price'])
 
-data = r.json()
+class search_product:
+  def __init__(self):
+    self.brand_name = []
+    self.init_response = []
+    self.searched_history = []
+    self.shopping_cart = []
+
+    self.r = requests.get('https://makeup-api.herokuapp.com/api/v1/products.json?product_type=foundation')
+
 
 print(len(data))
 print(data[165])
