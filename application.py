@@ -17,3 +17,19 @@ class Application:
     self.userList.append(user_input)
     print("\nAccount created!\nYour username is \""+ str(account_name) + "\" and your personal user id is \"" + str(ID) + "\"")
     self.ID +=1
+    
+    def sign_in(self):
+    if self.userList== []:
+      print("There are no users in the application!")
+    else:
+      User_ID = int(input("Please enter your user ID to log in: "))
+      if User_ID > len(self.userList):
+        print('That user ID does not exist!')
+      else:
+        opened_acc=self.userList[int(User_ID)-1]
+        print("\nWelcome "+ opened_acc.user_name + '!')
+
+  def browse_as_guest(self):
+    
+    pass
+
