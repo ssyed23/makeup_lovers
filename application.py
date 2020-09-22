@@ -17,8 +17,9 @@ class Application:
     self.userList.append(user_input)
     print("\nAccount created!\nYour username is \""+ str(account_name) + "\" and your personal user id is \"" + str(ID) + "\"")
     self.ID +=1
-    
-    def sign_in(self):
+
+
+  def sign_in(self):
     if self.userList== []:
       print("There are no users in the application!")
     else:
@@ -28,8 +29,24 @@ class Application:
       else:
         opened_acc=self.userList[int(User_ID)-1]
         print("\nWelcome "+ opened_acc.user_name + '!')
+        
 
-  def browse_as_guest(self):
+
+  def search_product(self):
+    item_name = input("Please enter the brand you are interested in: ")
+    try:
+      self.app.search_prod(item_name)
+      # search_product(item_name)
+      
+    except KeyError:
+      print("That stock does not exist. Please enter a valid stock ticker!\n")
+      return
+
+
+  def save(self):
+      self.app.save()
+
+  def buy_product(self):
+    self.app.purchase_items()
+
     
-    pass
-
