@@ -39,7 +39,7 @@ class Application:
       # search_product(item_name)
       
     except KeyError:
-      print("That stock does not exist. Please enter a valid stock ticker!\n")
+      print("That brand does not exist. Please enter a valid brand name!\n")
       return
 
 
