@@ -9,6 +9,8 @@ class Menu:
       "1": self.app.add_user,
       "2": self.app.sign_in,
       "3": self.app.search_product,
+      "4": self.app.buy_product,
+      "5": self.app.save
 
     }
 
@@ -22,6 +24,9 @@ class Menu:
              1. Create an account
              2. Sign In
              3. Continue as guest
+             4. Purchase product
+             5. Receipt
+             
              
  
              *************************************
