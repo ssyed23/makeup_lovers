@@ -65,7 +65,15 @@ class search_product:
       print(i)
 
     
-  
+  def save(self):         
+    with open('shopping_Cart.json', 'w') as output_file:
+      new =json.dumps(self.shopping_cart,default=lambda o:
+      o.__dict__, sort_keys=True, indent= 4)
+      json.dump(new,output_file)
+    self.s3 = boto3.client('s3')
+    self.s3.upload_file('shopping_Cart.json', 'lmtd-team-delta','shopping_Cart.json')
+    
+
        
         # print(data[i]['id'])
         # print(data[i]['price'])
