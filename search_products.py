@@ -1,5 +1,7 @@
 import requests
 import json
+import boto3
+
 
 class search_product:
   def __init__(self):
@@ -10,47 +12,19 @@ class search_product:
 
     self.r = requests.get('https://makeup-api.herokuapp.com/api/v1/products.json?product_type=foundation')
 
-    def search_prod(self, item_name):
+  def search_prod(self, item_name):
 
 
     if self.r.status_code == 200:
-          print('\nWe were able to find the value of the stock!')
+          print('\nWe were able to find the brand you are looking for!')
     elif self.r.status_code == 404:
-          print('Sorry we could not find the stock you were looking for')
+          print('Sorry we could not find the brand you are looking for, please try again!')
           return(self.search_product)
 
     
     data = self.r.json()
-
-    # self.init_response.append(data)
-
-    # print(data)
-    #print(data[165])
-    #print(data[165]['id'])
     
-
-    # print(len(data))
-
-
-    # for i in range(0,166):
-    #   print(data[i]['brand'])
-    
-    #item_name = input("Please enter the brand you are interested in: ")
-    
-
-
-#print(len(data))
-#print(data[165])
-#print(data[165]['id'])
-
-
-#for i in range(0,166):
-  #print(data[i]['brand'])
-
-
-#item_name = input("Please enter the brand you are interested in: ")
-
-print("Here are the products by " + item_name + ": ")
+    print("Here are the products by " + item_name + ": ")
     self.brand_name.append(item_name)
     
     for i in range(0,166):
@@ -65,24 +39,41 @@ print("Here are the products by " + item_name + ": ")
        print(product_link)
        print(product_id)
 
-    self.purchase_items()
+
        
        
   def purchase_items(self):
 
     data = self.r.json()
-    product_id = input("what is the id of the product you want to buy ? ")
-    how_many = int(input("quantitiety: "))
+    product_id = input("what is the name of the product you want to buy? ")
+    quantity = int(input("How many would you like to add to your cart? "))
 
     for i in range(0,166):
       if data[i]['name'] == product_id:
-        print(data[i]['id'])
-        print(data[i]['price'])
-        print(data[i]['link'])
+        base_price = data[i]['price']
+        total_price = float(base_price) * float(quantity)
+        
+        print(f"You purchased the item at a price of {base_price}"+ " each")
+        print(f"Your total is {total_price}")
+        values = (str(total_price), str(quantity), product_id)
+        self.shopping_cart.append(values)
 
-        cost_of_item = data[i]['price']
-        print(cost_of_item)
 
+  
+
+    for i in self.shopping_cart:
+      print(i)
+
+    
+  
+       
+        # print(data[i]['id'])
+        # print(data[i]['price'])
+        
+
+        #cost_of_item = data[i]['price']
+        #print(cost_of_item)
+    #self.shopping_cart.append(d)
 
 
 
